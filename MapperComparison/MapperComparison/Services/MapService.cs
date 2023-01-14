@@ -3,7 +3,7 @@
 namespace MapperComparison.Services;
 public static class MapService
 {
-    public static User MapObjectsManually(UserToMap userToMap)
+    public static User MapOneObjectManually(UserToMap userToMap)
     {
         return new User()
         {
@@ -13,7 +13,9 @@ public static class MapService
             Email = userToMap.Email,
             CardNumber = userToMap.CardNumber,
             Password = userToMap.Password,
-            PhoneNumber = userToMap.PhoneNumber,
+            PhoneNumber = userToMap.PhoneNumber
         };
     }
+
+
 }
