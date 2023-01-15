@@ -1,9 +1,20 @@
-﻿using MapperComparison.Models;
+﻿using AutoMapper;
+using MapperComparison.AutoMapperProfile;
+using MapperComparison.Models;
 
 namespace MapperComparison.Services;
-public static class MapService
+public class MapService
 {
-    public static User MapOneObjectManually(UserToMap userToMap)
+    private readonly MapperConfiguration _config;
+    private readonly IMapper _mapper;
+
+    public MapService()
+    {
+        _config = new MapperConfiguration(conf => conf.AddProfile<UserProfile>());
+        _mapper = AutoMapperInitializator.GetMapper(_config);
+    }
+
+    public User MapOneObjectManually(UserToMap userToMap)
     {
         return new User()
         {
@@ -17,7 +28,7 @@ public static class MapService
         };
     }
 
-    public static List<User> MapListOfObjectsManually(List<UserToMap> usersToMap)
+    public List<User> MapListOfObjectsManually(List<UserToMap> usersToMap)
     {
         var listToReturn = new List<User>();
 
@@ -37,4 +48,10 @@ public static class MapService
 
         return listToReturn;
     }
+
+    public User MapObjectUsingAutoMapper(UserToMap userToMap)
+        => _mapper.Map<UserToMap, User>(userToMap);
+
+    public List<User> MapListOfObjectsUsingAutoMapper(List<UserToMap> usersToMap)
+    => _mapper.Map<List<UserToMap>, List<User>>(usersToMap);
 }
