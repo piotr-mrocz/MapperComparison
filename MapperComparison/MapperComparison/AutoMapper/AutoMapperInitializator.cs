@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace MapperComparison.Services;
+namespace MapperComparison.AutoMapper;
 public static class AutoMapperInitializator
 {
     public static IMapper GetMapper(MapperConfiguration config)

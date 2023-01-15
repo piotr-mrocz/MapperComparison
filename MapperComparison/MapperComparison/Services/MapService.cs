@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BenchmarkDotNet.Attributes;
+using MapperComparison.AutoMapper;
 using MapperComparison.AutoMapperProfile;
 using MapperComparison.Models;
 using System.Runtime.InteropServices;
@@ -148,4 +149,15 @@ public class MapService
     [Benchmark]
     public User MapOneUserUsingImplicitOperator()
         => _userToMap;
+
+    [Benchmark]
+    public List<User> MapListOfUsersUsingImplicitOperator()
+    {
+        var listToReturn = new List<User>();
+
+        foreach (var userToMap in _usersToMap)
+            listToReturn.Add(userToMap);
+
+        return listToReturn;
+    }
 }
