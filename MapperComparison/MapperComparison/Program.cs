@@ -4,5 +4,5 @@ using MapperComparison.Services;
 
 Console.WriteLine("Hello, World!");
 
-var results = BenchmarkRunner.Run<MapService>();
+BenchmarkRunner.Run<MapService>();
 Console.ReadKey();

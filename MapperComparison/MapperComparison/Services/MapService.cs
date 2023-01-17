@@ -160,4 +160,15 @@ public class MapService
 
         return listToReturn;
     }
+
+    [Benchmark]
+    public User MapUserUsingAs()
+    {
+        return Convert<User>(_userToMap);
+    }
+
+    private User Convert<T>(T source)
+    {
+        return source as User;
+    }
 }
